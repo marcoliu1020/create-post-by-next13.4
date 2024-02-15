@@ -1,0 +1,19 @@
+GET http://localhost:3000/api/posts
+
+###
+
+GET http://localhost:3000/api/posts/json-db/5
+
+###
+
+POST http://localhost:3000/api/posts/supabase-db
+content-type: application/json
+
+{
+    "title": "sample",
+    "body": "blah blah",
+    "priority": "Low Priority",
+    "user_email": "test@gmail.com"
+}
+
+###
