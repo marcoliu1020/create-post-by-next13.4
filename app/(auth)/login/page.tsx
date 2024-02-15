@@ -1,6 +1,6 @@
 import LoginForm from './LoginForm';
 
-export default async function Login() {
+export default function Login() {
     return (
         <>
             <LoginForm />

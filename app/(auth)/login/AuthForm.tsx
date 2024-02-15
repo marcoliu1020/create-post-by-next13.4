@@ -1,45 +1,54 @@
-'use client'
+import React from "react"
+import type { FormEvent } from "react"
 
-import { FormEvent, useState } from "react"
+// components
+import { Button } from "@/components/ui/button"
+import ErrorMessage from '@/app/components/ErrorMessage'
 
-type Props = {
-    onSubmit: (e: FormEvent<HTMLFormElement>) => void
-    onSignInWithGoogle?: () => void
+type AuthFormProps = {
+    button: React.ReactNode
+    errorMsg?: React.ReactNode
+    onSubmit?: (e: FormEvent<HTMLFormElement>) => void
 }
 
-export default function AuthForm({ onSubmit, onSignInWithGoogle }: Props) {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-
+export default function AuthForm({ button, errorMsg, onSubmit }: AuthFormProps) {
     return (
-        <>
-            <form onSubmit={e => onSubmit(e)}>
-                <label>
-                    <span>Email:</span>
+        <form className="space-y-6" onSubmit={onSubmit}>
+            <div>
+                <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                    Email
+                </label>
+                <div className="mt-2">
                     <input
+                        id="email"
                         type="email"
-                        name='email'
+                        name="email"
+                        autoComplete="email"
                         required
-                        value={email}
-                        onChange={e => setEmail(e.target.value)} />
-                </label>
-
-                <label>
-                    <span>Password:</span>
-                    <input
-                        type="password"
-                        name='password'
-                        required
-                        value={password}
-                        onChange={e => setPassword(e.target.value)} />
-                </label>
-
-                <button className="btn-primary">submit</button>
-            </form>
-
-            <div className="providers mt-2 flex flex-col gap-2 items-center">
-                {onSignInWithGoogle && <button className="btn-secondary" onClick={onSignInWithGoogle}>Sign in with Google</button>}
+                        className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                </div>
             </div>
-        </>
+
+            <div>
+                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                    Password
+                </label>
+                <div className="mt-2">
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        autoComplete="current-password"
+                        required
+                        className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                </div>
+            </div>
+
+            {button}
+
+            {errorMsg}
+        </form>
     )
 }
