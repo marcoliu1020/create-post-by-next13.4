@@ -1,6 +1,7 @@
 'use client'
 
 import Link from "next/link"
+import Image from "next/image"
 
 // components
 import ProfileInDeskTop from "./ProfileInDeskTop"
@@ -47,7 +48,7 @@ function LinksOfDeskTop({ selectedId }: { selectedId?: number }) {
 
             {/* company logo */}
             <div className="flex-shrink-0">
-                <img
+                <Image
                     className="h-8 w-auto"
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
                     alt="Your Company"
