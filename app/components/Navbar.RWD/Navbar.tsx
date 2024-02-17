@@ -3,6 +3,9 @@
 import Link from "next/link"
 import Image from "next/image"
 
+// logos
+import Logo from '@/public/logo.svg'
+
 // components
 import ProfileInDeskTop from "./ProfileInDeskTop"
 import ProfileInMobile from "./ProfileInMobile"
@@ -50,7 +53,7 @@ function LinksOfDeskTop({ selectedId }: { selectedId?: number }) {
             <div className="flex-shrink-0">
                 <Image
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                    src={Logo}
                     alt="Your Company"
                 />
             </div>
