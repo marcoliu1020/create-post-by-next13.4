@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<img src="public/page-login.png" alt="image" width="300"/>
+<img src="public/page-home.png" alt="image" width="600"/>
+<img src="public/page-posts.jpg" alt="image" width="600"/>
+
+[demo](https://create-post-by-next13-4-gmb9h7wxp-marcoliu1020.vercel.app/)
 
 ## Getting Started
 
