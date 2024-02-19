@@ -1,10 +1,6 @@
 import React from "react"
 import type { FormEvent } from "react"
 
-// components
-import { Button } from "@/components/ui/button"
-import ErrorMessage from '@/app/components/ErrorMessage'
-
 type AuthFormProps = {
     button: React.ReactNode
     errorMsg?: React.ReactNode

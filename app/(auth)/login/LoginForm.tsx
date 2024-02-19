@@ -5,13 +5,13 @@ import { useRouter } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 // components
+import { Button } from "@/components/ui/button"
+import { Providers } from './Providers'
 import AuthForm from './AuthForm'
 import SignUpLink from './SignUpLink'
-import { Button } from "@/components/ui/button"
 import ErrorMessage from '@/app/components/ErrorMessage'
 
 // helpers
-import { Providers } from './Providers'
 
 export default function LoginForm() {
     const router = useRouter()
