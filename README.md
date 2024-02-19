@@ -30,29 +30,22 @@
 - 本機測試環境
     1. `npm install`
     2. `npm run dev`
-    3. .env.local setting
+    3. [.env.local setting](#envlocal-setting)
     4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## .env.local setting
-- 更改名稱 `.example.env.local` to `.env.local`
-- 填寫參數
-  1. `NEXT_PUBLIC_SUPABASE_URL`=https://xxx.supabase.co
-     - Supabase Project URL
-    </br>
-    <img src="public/supabase-url-anon.png" alt="image" width="600"/>
-  1. `NEXT_PUBLIC_SUPABASE_ANON_KEY`=eyJh5cCIJ9.eyJpc3Mk2MH0.ldHnVnoFwV
-     - Supabase Anon Key
-  2. `NEXT_PUBLIC_SITE_URL`=https://xxxxxxxxxxxxx.vercel.app
-     - 網路上的正式網址，如果沒有可以先不輸入
+1. 更改名稱 `.example.env.local` to `.env.local`
+2. 填寫參數
+   1. `NEXT_PUBLIC_SUPABASE_URL`=https://xxx.supabase.co
+      - Supabase Project URL
+   2. `NEXT_PUBLIC_SUPABASE_ANON_KEY`=eyJh5cCIJ9.eyJpc3Mk2MH0.ldHnVnoFwV
+      - Supabase Anon Key
+   3. `NEXT_PUBLIC_SITE_URL`=https://xxxxxxxxxxxxx.vercel.app
+      - 網路上的正式網址，如果沒有可以先不輸入
 
-## Supabase redirect URL setting for Vercel
-將專案部署到 Vercel，並且有使用 Google 第三方帳號登入，就要設定轉址服務
-- 新增 Vercel 測試網址 `https://*-username.vercel.app/`，username 是 Vercel 的 username
-<img src="public/supabase-redirect-url-setting.png" alt="image" width="600"/>
-
-- 如果有 production 網址，就可以新增
+- Supabase Project URL & Anon Key
 </br>
-<img src="public/supabase-prod-url.png" alt="image" width="600"/>
+<img src="public/supabase-url-anon.png" alt="image" width="600"/>
 
 ## Vercel env setting
 需要額外手動加入 .env.local 參數到 Vercel 的專案裡，不然 Vercel 編譯會失敗
@@ -62,3 +55,12 @@
 </br>
 <img src="public/vercel-project-setting.png" alt="image" width="600"/>
 <img src="public/vercel-env-setting.png" alt="image" width="600"/>
+
+## Supabase redirect URL setting for Vercel
+將專案部署到 Vercel，並且有使用 Google 第三方帳號登入，就要設定轉址服務
+- 新增 Vercel 測試網址 `https://*-username.vercel.app/`，username 是 Vercel 的 username
+<img src="public/supabase-redirect-url-setting.png" alt="image" width="600"/>
+
+- 如果有 production 網址，就可以新增
+</br>
+<img src="public/supabase-prod-url.png" alt="image" width="600"/>
