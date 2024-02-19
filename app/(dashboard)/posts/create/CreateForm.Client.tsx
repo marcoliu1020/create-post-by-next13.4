@@ -3,30 +3,45 @@
 import { useRouter } from "next/navigation"
 import { FormEvent, useState } from "react"
 
+// components
+import SubmitButton from "@/app/components/SubmitButton"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+
+
+// helper
+import { getURL } from "@/lib/helpers"
+
 export default function CreateFormByClient() {
     const router = useRouter()
-
-    const [title, setTitle] = useState('')
-    const [body, setBody] = useState('')
-    const [priority, setPriority] = useState('low')
     const [isLoading, setIsloading] = useState(false)
 
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
         setIsloading(true)
 
-        // for loacl json db        
-        // const post = { title, body, priority, user_email: 'marco@gmail.com' }
-        // const jsonServerURL = 'http://localhost:4000/posts'
-        // const res = await fetch(jsonServerURL, {
-        //     method: 'POST',
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify(post)
-        // })
-
         // for online supabase db
-        const post = { title, body, priority }
-        const supabaseServerURL = 'http://localhost:3000/api/posts/supabase-db'
+        const form = new FormData(e.currentTarget)
+        const post = {
+            title: form.get('title'),
+            body: form.get('body'),
+            priority: form.get('priority')
+        }
+        const supabaseServerURL = getURL() + `/api/posts/supabase-db`
         const res = await fetch(supabaseServerURL, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
@@ -45,54 +60,74 @@ export default function CreateFormByClient() {
             router.push('/posts')
         }
 
+        setIsloading(false)
     }
 
     return (
-        <form className="w-1/2" onSubmit={handleSubmit}>
-            <label>
-                <span>Title:</span>
-                <input
-                    name='title'
-                    required
-                    tabIndex={1}
-                    type="text"
-                    value={title}
-                    onChange={e => setTitle(e.target.value)}
-                />
-            </label>
+        <>
+            <Card className="bg-inherit shadow-none border-none">
+                <CardHeader>
+                    <CardTitle className="mx-auto">Create a New Post</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <Form isLoading={isLoading} onSubmit={handleSubmit} />
+                </CardContent>
+            </Card>
 
-            <label>
-                <span>Body:</span>
-                <textarea
-                    name='body'
-                    required
-                    tabIndex={1}
-                    value={body}
-                    onChange={e => setBody(e.target.value)}
-                />
-            </label>
 
-            <label>
-                <span>Priority:</span>
-                <select
-                    name='priority'
-                    tabIndex={1}
-                    value={priority}
-                    onChange={e => setPriority(e.target.value)}
-                >
-                    <option value="low">Low Priority</option>
-                    <option value="medium">Mediumn Priority</option>
-                    <option value="high">High Priority</option>
-                </select>
-            </label>
-
-            <button tabIndex={1} className="btn-primary" disabled={isLoading}>
-                {isLoading
-                    ? <span>Adding...</span>
-                    : <span>Add Post</span>
-                }
-            </button>
-        </form>
+            {/* <button tabIndex={1} className="btn-primary" disabled={isLoading}>
+                    {isLoading
+                        ? <span>Adding...</span>
+                        : <span>Add Post</span>
+                    }
+                </button> */}
+        </>
     )
 }
 
+type FormProps = {
+    isLoading?: boolean
+    onSubmit: (e: FormEvent<HTMLFormElement>) => void
+}
+
+function Form({ isLoading, onSubmit }: FormProps) {
+    return (
+        <form className="mx-auto max-w-xl grid grid-cols-1 gap-5" onSubmit={onSubmit}>
+            <Label className="space-y-2">
+                <span>Title:</span>
+                <Input
+                    name='title'
+                    type="text"
+                    required
+                    autoFocus
+                    tabIndex={1}
+                />
+            </Label>
+
+            <Label className="space-y-2">
+                <span>Body:</span>
+                <Textarea
+                    name='body'
+                    required
+                    tabIndex={1}
+                />
+            </Label>
+
+            <Label className="space-y-2">
+                <span>Priority:</span>
+                <Select name="priority" defaultValue="low">
+                    <SelectTrigger tabIndex={1}>
+                        <SelectValue placeholder='select priority' />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="low">low</SelectItem>
+                        <SelectItem value="medium">medium</SelectItem>
+                        <SelectItem value="high">high</SelectItem>
+                    </SelectContent>
+                </Select>
+            </Label>
+
+            <SubmitButton isLoading={isLoading} className="block mx-auto" tabIndex={1} />
+        </form>
+    )
+}

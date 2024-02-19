@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/select"
 
 // apis
-import { addPost } from "./action"
+import { addPost } from "../action"
 
 // components
 import SubmitButton from "@/app/components/SubmitButton"

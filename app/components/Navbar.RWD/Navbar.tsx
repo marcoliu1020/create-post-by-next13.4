@@ -22,7 +22,7 @@ export const LinkOfURLs = [
 ]
 
 export default function Navbar({ user }: Props) {
-    console.log(user);
+    // console.log(user);
 
     return (
         <nav className="bg-gray-800 px-4 sm:px-6 lg:px-8">

@@ -61,7 +61,8 @@ async function getPostsFromSupabaseServer(): Promise<Post[] | null> {
     const supabase = createServerComponentClient<Database>({ cookies })
     const { data, error } = await supabase.from('posts')
         .select()
-    
+        .order("created_at", { ascending: false })
+
     if (error) {
         console.error(error)
     }
