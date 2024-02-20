@@ -23,11 +23,11 @@ export default function Home() {
         </CardContent>
       </Card>
 
-      <h2 className="scroll-m-20 text-center border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-        The Training Posts
-      </h2>
+      <div className='p-5 flex flex-col justify-center items-center gap-5'>
+        <h2 className="text-center text-3xl font-semibold tracking-tight">
+          The Training Posts
+        </h2>
 
-      <div className="my-8 flex justify-center">
         <Link href="/posts">
           <Button>View Posts</Button>
         </Link>
